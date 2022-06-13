@@ -1,27 +1,8 @@
-import { useEffect, useState } from 'react'
-import { getData } from '../services'
+import { Link } from 'react-router-dom'
+import useGetData from '../hooks/useGetData'
 
 const Countries = () => {
-  const [list, setList] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    const setData = async () => {
-      try {
-        const { data: countries } = await getData()
-        console.log(countries)
-        setList(countries)
-        setLoading(false)
-      } catch ({ message }) {
-        setError(message)
-      } finally {
-        setLoading(false)
-      }
-    }
-    setData()
-  }, [])
-
+  const { list, loading, error } = useGetData()
   if (error) {
     return <div>{error}</div>
   }
@@ -31,10 +12,19 @@ const Countries = () => {
   }
 
   return (
-    list.map((index, key) => (
-      <p key={key}>{index.name.official}</p>
+    <section className='row py-5 gy-4'>
 
-    ))
+      {list.map((index, key) => (
+        <div key={key} className='col-12 col-sm-6 col-md-6 col-lg-3'>
+          <Link to={`/country/${index.name.common}`}>
+            <article className='card'>
+              <img className='card-img-top' src={index.flags.svg} alt={index.name.common} />
+              <p>{index.name.common}</p>
+            </article>
+          </Link>
+        </div>
+      ))}
+    </section>
 
   )
 }
