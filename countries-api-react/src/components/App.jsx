@@ -1,11 +1,10 @@
-import { useState } from 'react'
 import '../styles/App.css'
+import Countries from './Countries'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function App () {
   return (
-    <div className="App">
+    <div className='App'>
+      <Countries />
     </div>
   )
 }
