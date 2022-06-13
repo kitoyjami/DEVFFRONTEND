@@ -1,28 +1,41 @@
 import { useEffect, useState } from 'react'
-import { getCountries } from '../services'
+import { getData } from '../services'
 
 const Countries = () => {
-  const [listCountries, setListCountries] = useState([])
-  const [error, setError] = useState(null)
+  const [list, setList] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    const getData = async () => {
+    const setData = async () => {
       try {
-        const { data: countries } = await getCountries()
-        setListCountries(countries)
-      } catch (error) {
-        setError(error)
+        const { data: countries } = await getData()
+        console.log(countries)
+        setList(countries)
+        setLoading(false)
+      } catch ({ message }) {
+        setError(message)
+      } finally {
+        setLoading(false)
       }
     }
-    getData()
+    setData()
   }, [])
 
-  return listCountries.length === 0
-    ? (
-      <p>...Loading</p>
-      )
-    : (
-      <p> {listCountries[0].name.common} </p>
-      )
+  if (error) {
+    return <div>{error}</div>
+  }
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  return (
+    list.map((index, key) => (
+      <p key={key}>{index.name.official}</p>
+
+    ))
+
+  )
 }
 export default Countries

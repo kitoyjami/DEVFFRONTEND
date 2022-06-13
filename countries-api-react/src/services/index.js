@@ -14,4 +14,12 @@ const getCountry = async (name) => {
   return res
 }
 
-export { getCountries, getCountry }
+const getData = async (name = '') => {
+  const setName = name ? `/name/${name}` : '/all'
+
+  const req = await axios.get(baseUrl + setName)
+  const res = req
+  return res
+}
+
+export { getCountries, getCountry, getData }
