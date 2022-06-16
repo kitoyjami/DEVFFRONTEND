@@ -4,13 +4,18 @@ import useAppContext from '../hooks/useAppContext'
 
 const SearchBar = () => {
   const searchRef = useRef()
-  const { query, setQuery } = useAppContext()
+  const { setQuery } = useAppContext()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setQuery(searchRef.current.value)
+    searchRef.current.value = ''
   }
-  console.log(query)
+
+  const onResetQuery = () => {
+    setQuery('')
+  }
+
   return (
     <>
       <nav className='navbar navbar-expand-lg bg-dark'>
@@ -22,7 +27,7 @@ const SearchBar = () => {
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
-                <Link className='nav-link active' aria-current='page' to='/countries'>Home</Link>
+                <Link onClick={onResetQuery} className='nav-link active' aria-current='page' to='/countries'>Home</Link>
               </li>
             </ul>
             <form className='d-flex' role='search' onSubmit={handleSubmit}>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getData } from '../services'
 
 const useGetData = (name = '') => {
-  const [list, setList] = useState(name ? {} : [])
+  const [list, setList] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -11,7 +11,7 @@ const useGetData = (name = '') => {
       try {
         const { data: countries } = await getData(name)
         console.log(countries)
-        setList(name ? countries[0] : countries)
+        setList(countries)
         setLoading(false)
       } catch ({ message }) {
         setError(message)
@@ -20,7 +20,7 @@ const useGetData = (name = '') => {
       }
     }
     setData()
-  }, [])
+  }, [name])
 
   return { list, loading, error }
 }
