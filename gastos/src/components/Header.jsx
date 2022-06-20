@@ -1,9 +1,11 @@
 import React from 'react'
 
 const header = () => {
-  return (
-    <h1>Control de gastos</h1>
-  )
+    return (
+        <h2>
+            Control de Gastos
+        </h2>
+    )
 }
 
 export default header

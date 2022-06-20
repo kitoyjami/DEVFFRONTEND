@@ -1,18 +1,20 @@
 import { useState } from 'react'
-import './App.css'
+import Header from './components/Header'
 import Balance from './components/Balance'
-import Header from './components/header'
 import IngresosEgresos from './components/IngresosEgresos'
-import NuevaTransaccion from './components/NuevaTransaccion'
 import Transacciones from './components/Transacciones'
-import { GlobalProvider } from './context/GlobaLContext'
+import NuevaTransaccion from './components/NuevaTransaccion'
+
+import { GlobalProvider } from './context/GlobalContext'
+
+import './App.css'
 
 function App() {
+
   return (
-    <GlobalProvider>  
-    
+    <GlobalProvider>
       <Header />
-      <div className="container"> 
+      <div className="container">
         <Balance />
         <IngresosEgresos />
         <Transacciones />
