@@ -23,6 +23,7 @@ const Countries = () => {
               <img className='card-img-top' src={index.flags.svg} alt={index.name.common} />
               <div className='card-body'>
                 <p className='card-title'>{index.name.common}</p>
+                <p>otro cambio</p>
               </div>
             </article>
           </Link>
