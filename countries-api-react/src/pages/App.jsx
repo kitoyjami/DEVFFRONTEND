@@ -1,15 +1,19 @@
 import '../styles/App.css'
-import SearchBar from '../components/SearchBar'
+import NavBar from '../components/NavBar'
 import { Outlet } from 'react-router-dom'
+import { Suspense } from 'react'
+import { AppProvider } from '../context/AppContext'
 
 function App () {
   return (
-    <>
-      <SearchBar />
+    <AppProvider>
+      <NavBar />
       <div className='App container py-5'>
-        <Outlet />
+        <Suspense fallback={<p>...loading suspense</p>}>
+          <Outlet />
+        </Suspense>
       </div>
-    </>
+    </AppProvider>
   )
 }
 

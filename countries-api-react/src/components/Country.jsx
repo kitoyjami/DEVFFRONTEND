@@ -1,30 +1,22 @@
-// import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-// import useAppContext from '../hooks/useAppContext'
-import useGetData from '../hooks/useGetData'
+import useFetcher from '../hooks/useFetcher'
 
 const Country = () => {
   const { name = '' } = useParams()
-  const { list, loading, error } = useGetData(name)
-  // useEffect(() => { return () => { setQuery('') } }, [])
+
+  const {
+    data: country,
+    error
+  } = useFetcher(`https://restcountries.com/v3.1/name/${name}`)
 
   if (error) return <p>{error}</p>
-  if (loading) {
-    return (
-      <section className='container py-5'>
-        <p>...Loading</p>
-      </section>
-    )
-  }
 
   return (
-    <section className='container py-5'>
-      <p>Country</p>
-      <p>{list[0].name.common}</p>
-      <p>{list[0].capital}</p>
-      <img width={400} height={300} src={list[0].flags.svg} alt={list[0].name.common} />
-    </section>
+    <article>
+      <p>{country[0].name.common}</p>
+      <p>{country[0].capital}</p>
+      <img loading='lazy' width={400} height={300} src={country[0].flags.svg} alt={country[0].name.common} />
+    </article>
   )
 }
-
 export default Country
