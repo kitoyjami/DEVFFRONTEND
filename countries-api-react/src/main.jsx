@@ -8,7 +8,6 @@ import './styles/index.css'
 // Router
 import Paths from './routes'
 import { BrowserRouter } from 'react-router-dom'
-import SearchBar from './components/SearchBar'
 
 // contextProvider
 import { ContextProvider } from './context'
@@ -18,7 +17,6 @@ const container = createRoot(root)
 container.render(
   <ContextProvider>
     <BrowserRouter>
-      <SearchBar />
       <Paths />
     </BrowserRouter>
   </ContextProvider>

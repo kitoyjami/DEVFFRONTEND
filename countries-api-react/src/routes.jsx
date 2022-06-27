@@ -1,20 +1,34 @@
 import { Navigate, useRoutes } from 'react-router-dom'
+// PAGES
+import Login from './pages/Login'
 import App from './pages/App'
-import Country from './pages/Country'
 
+// Components
+import Country from './components/Country'
+import Countries from './components/Countries'
 const Paths = () => {
   const element = useRoutes([
     {
       path: '/',
-      element: <Navigate to='/countries' />
+      element: <Navigate to='/login' />
+    },
+    {
+      path: '/login',
+      element: <Login />
     },
     {
       path: '/countries',
-      element: <App />
-    },
-    {
-      path: '/country/:name',
-      element: <Country />
+      element: <App />,
+      children: [
+        {
+          element: <Countries />,
+          index: true
+        },
+        {
+          path: 'country/:name',
+          element: <Country />
+        }
+      ]
     },
     {
       path: '/404',

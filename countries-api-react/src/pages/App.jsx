@@ -1,11 +1,13 @@
 import '../styles/App.css'
-import Countries from '../components/Countries'
+import SearchBar from '../components/SearchBar'
+import { Outlet } from 'react-router-dom'
 
 function App () {
   return (
     <>
-      <div className='App container'>
-        <Countries />
+      <SearchBar />
+      <div className='App container py-5'>
+        <Outlet />
       </div>
     </>
   )
