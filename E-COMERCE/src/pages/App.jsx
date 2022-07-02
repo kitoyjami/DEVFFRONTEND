@@ -5,12 +5,12 @@ import { BrowserRouter } from 'react-router-dom'
 
 const App = () => {
   return (
-   <>
-   <BrowserRouter>
-     <Header />
-     <Paths />
-   </BrowserRouter>
-   </>
+    <>
+      <BrowserRouter>
+        <Header />
+        <Paths />
+      </BrowserRouter>
+    </>
   )
 }
 

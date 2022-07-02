@@ -1,4 +1,6 @@
 import { Navigate, useRoutes } from 'react-router-dom'
+import Dashboard from './components/Dashboard'
+import Ventas from './components/Ventas'
 
 // pages
 import Login from './pages/Login'
@@ -10,15 +12,19 @@ const Paths = () => {
   const element = useRoutes([
     {
       path: '/',
-      element: <Navigate to='/login' replace />
+      element: <Dashboard />
     },
     {
       path: '/login',
       element: <Login />
     },
     {
-        path: '/register',
-        element: <Register />
+      path: '/register',
+      element: <Register />
+    },
+    {
+      path: 'user',
+      element: <Ventas />
     },
     {
       path: '/404',
