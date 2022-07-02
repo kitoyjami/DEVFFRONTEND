@@ -1,30 +1,54 @@
 import { Navigate, useRoutes } from 'react-router-dom'
+
+// pages
 import App from './pages/App'
-import Country from './pages/Country'
+import Login from './pages/Login'
+
+// components
+import Countries from './components/Countries'
+import Country from './components/Country'
+import Search from './components/Search'
 
 const Paths = () => {
   const element = useRoutes([
     {
       path: '/',
-      element: <Navigate to='/countries' />
+      element: <Navigate to='/login' replace />
+    },
+    {
+      path: '/login',
+      element: <Login />
     },
     {
       path: '/countries',
-      element: <App />
-    },
-    {
-      path: '/country/:name',
-      element: <Country />
+      element: <App />,
+      children: [
+        {
+          element: <Countries />,
+          index: true
+        },
+        {
+          path: 'country/:name',
+          element: <Country />
+        },
+        {
+          path: 'search',
+          element: <Search />
+        }
+
+      ]
     },
     {
       path: '/404',
-      element: <div className='text-center'>Page not found</div>
+      element: <p className='text-center'>Page not found</p>
     },
     {
       path: '*',
       element: <Navigate to='/404' replace />
     }
   ])
+
   return element
 }
+
 export default Paths
